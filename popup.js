@@ -10,12 +10,12 @@ window.onload = function() {
 
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                //Only plain text
-                if (!file.type.match('plain')) continue;
+                //Allow only srt files
 
                 var picReader = new FileReader();
                 picReader.addEventListener("load", function(event) {
                     var textFile = event.target;
+                    if(file.name.split('.').pop() != "srt") alert("Wrong file type!");//File type checking
                     var div = document.createElement("div");
                     div.innerText = textFile.result;
                     output.insertBefore(div, null);
