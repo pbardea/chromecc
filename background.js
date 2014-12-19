@@ -29,3 +29,4 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         chrome.tabs.executeScript(tab.id, { code: code });
     }
 });
+
