@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-=======
 window.onload = function() {
 
     //Check File API support
@@ -34,4 +29,3 @@ window.onload = function() {
         console.log("Your browser does not support File API");
     }
 }
->>>>>>> 3b3b563b91df6fa6e4412c927308b2b2eacef8bb
