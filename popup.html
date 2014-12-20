@@ -1,31 +1,15 @@
 <!doctype html>
-<html>
+<html style="min-width:250px;max-width:600px;" >
   <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-      body {
-        min-width: 357px;
-        overflow-x: hidden;
-      }
-
-      img {
-        margin: 5px;
-        border: 2px solid black;
-        vertical-align: middle;
-        width: 75px;
-        height: 75px;
-      }
-    </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
-     -->
+    <title>Popup</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="popup.js"></script>
   </head>
   <body>
-    <input type="file" id="read-input" size="64" onchange="read_chg(this)" autocomplete="off" placeholder="no file selected">
+    <article>
+        <label for="files">Select a file: </label>
+        <input id="files" type="file" />
+        <output id="result" />
+    </article>
   </body>
 </html>

@@ -48,3 +48,4 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
   //setCaptionTo(info,tab,"NEW LINE PLEASE!");
   playScript(info, tab, "file:///Users/pbardea/chromecc/example.srt");
 });
+
