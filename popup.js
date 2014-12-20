@@ -39,6 +39,7 @@ var parser = (function() {
     var pItems = {};
 
     /**
+     * STILL NEED TO ADD <i>/<b>/html tags support
      * Converts srt subtitles into array of objects using regex ofc
      * [{
      *     id:        `Number of subtitle`
