@@ -1,3 +1,5 @@
+var fileContents = "penis";
+console.log(fileContents);
 window.onload = function() {
 
     //Check File API support
@@ -10,18 +12,16 @@ window.onload = function() {
 
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                //Allow only srt files
 
-                var picReader = new FileReader();
-                picReader.addEventListener("load", function(event) {
+                var reader = new FileReader();
+                reader.addEventListener("load", function(event) {
                     var textFile = event.target;
                     if(file.name.split('.').pop() != "srt") alert("Wrong file type!");//File type checking
-                    var div = document.createElement("div");
-                    div.innerText = textFile.result;
-                    output.insertBefore(div, null);
+                    fileContents = textFile.result;
+                    //INSERT PARSING FUNCTION HERE, use fileContents as @param
                 });
                 //Read the text file
-                picReader.readAsText(file);
+                reader.readAsText(file);
             }
         });
     }
@@ -29,3 +29,4 @@ window.onload = function() {
         console.log("Your browser does not support File API");
     }
 }
+console.log(fileContents);
