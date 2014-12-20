@@ -1,5 +1,4 @@
-var fileContents = "penis";
-console.log(fileContents);
+var fileContents = "NULL";
 window.onload = function() {
 
     //Check File API support
@@ -29,4 +28,7 @@ window.onload = function() {
         console.log("Your browser does not support File API");
     }
 }
-console.log(fileContents);
+
+function parseSrt(inFile){
+
+}
