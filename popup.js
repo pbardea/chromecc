@@ -1,6 +1,5 @@
 var fileContents = "NULL";
 window.onload = function() {
-
     //Check File API support
     if (window.File && window.FileList && window.FileReader) {
         var filesInput = document.getElementById("files");
@@ -19,11 +18,7 @@ window.onload = function() {
                     fileContents = textFile.result;
                     //INSERT PARSING FUNCTION HERE, use fileContents as @param, bool values if needing ms or s time values.
                     var parsedData = parser.fromSrt(fileContents, true);
-                    for(var i = 0; i < 14; i++){
-                        console.log(parsedData[i].text);
-                        console.log(parsedData[i].startTime);
-                        console.log(parsedData[i].endTime);
-                    }
+                    displayCaption();
                     //HOLY SHIT THIS WORKS omg
                 });
                 //Read the text file

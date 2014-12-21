@@ -1,39 +1,45 @@
-function displayCaption(info, tab){
-  if (tab) {
-    chrome.tabs.sendMessage(tab.id, {message:'showCaption'});
-  }
+function displayCaption(){
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+		var tab = tabs[0];	
+    	chrome.tabs.sendMessage(tab.id, {message:'showCaption'});
+	});
 }
 
-function setCaptionTo(info, tab, line){
-  if (tab){
-    chrome.tabs.sendMessage(tab.id, {message:'changeLine',newLine:line});
-  }
+function setCaptionTo(line){
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+		var tab = tabs[0];
+	    chrome.tabs.sendMessage(tab.id, {message:'changeLine',newLine:line});
+	});
 }
 
-function hideCaption(info, tab){
-  if (tab){
-    chrome.tabs.sendMessage(tab.id, {message:'hideCaption'});
-  }
+function hideCaption(){
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+		var tab = tabs[0];
+	    chrome.tabs.sendMessage(tab.id, {message:'hideCaption'});
+	});
+    
 }
 
-function toggleCaption(info, tab){
-  if (tab){
-    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
-        if(response.found){
-          hideCaption(info, tab);
-        }else{
-          displayCaption(info, tab);
-        }
+function toggleCaption(){
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+		var tab = tabs[0];
+    	chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
+        	if(response.found){
+          		hideCaption();
+        	}else{
+         		displayCaption();
+        	}
+    	});
     });
-  }
 }
 
-function isCaption(info, tab){
-  if (tab){
-    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
-        return respsonse.found; 
-    });
-  }
+function isCaption(){
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs) {
+		var tab = tabs[0];
+	    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
+	        return respsonse.found; 
+	    });
+	});
 }
 
 
@@ -49,6 +55,6 @@ chrome.contextMenus.create({
 
 // Register a listener for the `onClicked` event
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-  toggleCaption(info, tab);
+	displayCaption();
 });
 
