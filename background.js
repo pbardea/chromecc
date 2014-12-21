@@ -10,7 +10,7 @@ function displayCaption(info, tab){
               + 'position: fixed; '
               + 'bottom: 20px; '
               + 'left: 30px; '
-              + 'z-index: 9999; '
+              + 'z-index: 2147483647; '
               + '");',
           'd.setAttribute("id", "caption");',
           'd.innerHTML="Welcome to Chrome CC!";',
