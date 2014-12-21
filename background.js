@@ -1,20 +1,44 @@
+chrome.extension.onMessage.addListener(
+    function(request, sender, sendResponse){
+        if(request.msg == "loadCaption"){
+            loadDataToCaption(request.data);
+        }
+    }
+);
+
+function loadDataToCaption(data){
+  console.log(data);
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+      console.log(2);
+		  var tab = tabs[0];	
+    	chrome.tabs.sendMessage(tab.id, {message:'loadCaption',data:data}, function(response){
+        console.log(3);
+        for (var i = 0; i < data.length; i++){
+          console.log(data[i].text);
+          setCaptionTo(data[i].text);
+        }
+    });
+	});
+}
+
+
 function displayCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		var tab = tabs[0];	
+		  var tab = tabs[0];	
     	chrome.tabs.sendMessage(tab.id, {message:'showCaption'});
 	});
 }
 
 function setCaptionTo(line){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		var tab = tabs[0];
+		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'changeLine',newLine:line});
 	});
 }
 
 function hideCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		var tab = tabs[0];
+		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'hideCaption'});
 	});
     
@@ -22,12 +46,12 @@ function hideCaption(){
 
 function toggleCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		var tab = tabs[0];
+		  var tab = tabs[0];
     	chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
         	if(response.found){
           		hideCaption();
         	}else{
-         		displayCaption();
+         		  displayCaption();
         	}
     	});
     });
@@ -35,13 +59,12 @@ function toggleCaption(){
 
 function isCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs) {
-		var tab = tabs[0];
+		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
 	        return respsonse.found; 
 	    });
 	});
 }
-
 
 //the following uses a context menu (ie right click menu)
 
@@ -55,6 +78,6 @@ chrome.contextMenus.create({
 
 // Register a listener for the `onClicked` event
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-	displayCaption();
+    toggleCaption();
 });
 

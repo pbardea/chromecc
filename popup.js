@@ -18,7 +18,12 @@ window.onload = function() {
                     fileContents = textFile.result;
                     //INSERT PARSING FUNCTION HERE, use fileContents as @param, bool values if needing ms or s time values.
                     var parsedData = parser.fromSrt(fileContents, true);
-                    displayCaption();
+                    chrome.extension.sendMessage({ msg: "loadCaption" ,data:parsedData});
+                    // for(var i = 0; i < 14; i++){
+                    //      console.log(parsedData[i].text);   
+                    //      console.log(parsedData[i].startTime);    
+                    //      console.log(parsedData[i].endTime);    
+                    //  }
                     //HOLY SHIT THIS WORKS omg
                 });
                 //Read the text file
