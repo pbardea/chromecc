@@ -13,10 +13,6 @@ function loadDataToCaption(data){
 		  var tab = tabs[0];	
     	chrome.tabs.sendMessage(tab.id, {message:'loadCaption',data:data}, function(response){
         console.log(3);
-        for (var i = 0; i < data.length; i++){
-          console.log(data[i].text);
-          setCaptionTo(data[i].text);
-        }
     });
 	});
 }
