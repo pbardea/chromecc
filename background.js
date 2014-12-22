@@ -17,7 +17,7 @@ function loadDataToCaption(data){
 
 function displayCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		  var tab = tabs[0];	
+		  var tab = tabs[0];
     	chrome.tabs.sendMessage(tab.id, {message:'showCaption'});
 	});
 }
@@ -34,7 +34,7 @@ function hideCaption(){
 		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'hideCaption'});
 	});
-    
+
 }
 
 function toggleCaption(){
@@ -54,7 +54,7 @@ function isCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs) {
 		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
-	        return respsonse.found; 
+	        return respsonse.found;
 	    });
 	});
 }
