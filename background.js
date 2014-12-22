@@ -68,8 +68,13 @@ function isCaption(){
 
 // Create a context-menu
 chrome.contextMenus.create({
+<<<<<<< HEAD
     id: "enableCC",   // <-- mandatory with event-pages
     title: enabled,
+=======
+    id: "toggleCC",   // <-- mandatory with event-pages
+    title: "Toggle CC",
+>>>>>>> 18e9392cd749bcd9a7a9c578f93251e2af485d8a
     contexts: ["all"]
 });
 
