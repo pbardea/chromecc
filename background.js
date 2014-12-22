@@ -1,3 +1,4 @@
+var enabled = "Enable CC";
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse){
         if(request.msg == "loadCaption"){
@@ -10,7 +11,7 @@ function loadDataToCaption(data){
   console.log(data);
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
       console.log(2);
-		  var tab = tabs[0];	
+		  var tab = tabs[0];
     	chrome.tabs.sendMessage(tab.id, {message:'loadCaption',data:data}, function(response){
         console.log(3);
     });
@@ -20,7 +21,7 @@ function loadDataToCaption(data){
 
 function displayCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-		  var tab = tabs[0];	
+		  var tab = tabs[0];
     	chrome.tabs.sendMessage(tab.id, {message:'showCaption'});
 	});
 }
@@ -37,7 +38,7 @@ function hideCaption(){
 		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'hideCaption'});
 	});
-    
+
 }
 
 function toggleCaption(){
@@ -51,13 +52,14 @@ function toggleCaption(){
         	}
     	});
     });
+    enabled = "Disable CC";
 }
 
 function isCaption(){
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs) {
 		  var tab = tabs[0];
 	    chrome.tabs.sendMessage(tab.id, {message:'isCaption'}, function (response){
-	        return respsonse.found; 
+	        return respsonse.found;
 	    });
 	});
 }
@@ -67,7 +69,7 @@ function isCaption(){
 // Create a context-menu
 chrome.contextMenus.create({
     id: "enableCC",   // <-- mandatory with event-pages
-    title: "Enable CC",
+    title: enabled,
     contexts: ["all"]
 });
 
