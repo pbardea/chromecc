@@ -7,12 +7,9 @@ chrome.extension.onMessage.addListener(
 );
 
 function loadDataToCaption(data){
-  console.log(data);
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-      console.log(2);
 		  var tab = tabs[0];	
     	chrome.tabs.sendMessage(tab.id, {message:'loadCaption',data:data}, function(response){
-        console.log(3);
     });
 	});
 }

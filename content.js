@@ -8,17 +8,16 @@ function(request, sender, sendResponse) {
         document.body.appendChild(d);
     }else if(request.message == 'loadCaption') {
         var data = request.data;
-        if (document.getElementById("caption")){
-          var elem = document.getElementById("caption");
-          for (var i = 0; i < request.data.length; i++){
-            elem.innerHTML = data[i].text;
-          }
-        }else{
+        if (document.getElementById("caption")==null){
           var d = document.createElement("div");
           d.setAttribute("style", "background-color:black; color: white; fontSize:large;position: fixed; bottom: 20px; left: 30px; z-indez:2147483647;");    
           d.setAttribute("id","caption");
           d.innerHTML="Welcome to ChromeCC!";
           document.body.appendChild(d);
+        }
+        var elem = document.getElementById("caption");
+        for (var i = 0; i < request.data.length; i++){
+          elem.innerHTML = data[i].text;
         }
         sendResponse();
     }else if(request.message == 'changeLine') {
