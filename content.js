@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
     if(request.message == 'showCaption') {
         var d = document.createElement("div");
-        d.setAttribute("style", "background-color:black; color: white; fontSize:large;position: fixed; bottom: 20px; left: 30px; z-indez:2147483647;");    
+        d.setAttribute("style", "background-color:black; color: white; fontSize:large;position: fixed; bottom: 20px; left: 30px; z-indez:2147483647;");
         d.setAttribute("id","caption");
         d.innerHTML="Welcome to ChromeCC!";
         document.body.appendChild(d);
@@ -10,7 +10,7 @@ function(request, sender, sendResponse) {
         var data = request.data;
         if (document.getElementById("caption")==null){
           var d = document.createElement("div");
-          d.setAttribute("style", "background-color:black; color: white; fontSize:large;position: fixed; bottom: 20px; left: 30px; z-indez:2147483647;");    
+          d.setAttribute("style", "background-color:black; color: white; fontSize:large;position: fixed; bottom: 20px; left: 30px; z-indez:2147483647;");
           d.setAttribute("id","caption");
           d.innerHTML="Welcome to ChromeCC!";
           document.body.appendChild(d);
