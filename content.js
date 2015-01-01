@@ -18,7 +18,7 @@ function(request, sender, sendResponse) {
         var elem = document.getElementById("caption");
         var Timer = function(){        
           // object properties
-          this.Interval = 1;
+          this.Interval = 10;
           this.Enable = new Boolean(false);
           this.Tick;
           //member vars
@@ -43,20 +43,22 @@ function(request, sender, sendResponse) {
         var index = 0;
         var subCount = 0;
         var obj = new Timer();
-        obj.Interval = 1;
+        obj.Interval = 10;
         obj.Tick = timer_tick;
         obj.Start();
 
         function timer_tick()
         {
-          if(data[subCount].startTime === index){
+          var start = Math.round(data[subCount].startTime/100)*100;
+          var end = Math.round(data[subCount].endTime/100)*100;
+          if(start === index){
             elem.innerHTML = data[subCount].text + ' ' + index;          
+          }
+          else if(end === index){
+            elem.innerHTML = ' ' + index;          
             subCount++;
           }
-          else if(data[subCount].endTime === index){
-            elem.innerHTML = ' ' + index;          
-          }
-          index++;
+          index+=10;
           if(subCount === (request.data.length -1))
             obj.Stop();
         }
