@@ -16,8 +16,14 @@ function(request, sender, sendResponse) {
           document.body.appendChild(d);
         }
         var elem = document.getElementById("caption");
+        var delay =1000;
         for (var i = 0; i < request.data.length; i++){
-          elem.innerHTML = data[i].text;
+          (function(s){
+              setTimeout( function(){
+                  elem.innerHTML = s;
+              }, delay);
+          })(data[i].text);
+          delay += 1000;
         }
         sendResponse();
     }else if(request.message == 'changeLine') {
