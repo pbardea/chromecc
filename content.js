@@ -59,7 +59,6 @@ function(request, sender, sendResponse) {
           index++;
           if(subCount === (request.data.length -1))
             obj.Stop();
-          elem.innerHTML = index;
         }
 
         sendResponse();
