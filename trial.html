@@ -1,0 +1,32 @@
+<html>
+<body>
+	<div id="target">yo</div>
+	<script type="text/javascript">
+	var target = document.getElementById("target"),
+	results = 0,
+	iterations = 1000,
+	i = 0;
+
+function go() {
+	var fn = function () {
+			results += new Date().getTime() - d;
+			i += 1;
+			if (i < iterations) {
+				go();
+			} else {
+				finish();
+			}
+		},
+		d = new Date().getTime();
+	setTimeout(fn, 0);
+}
+
+function finish() {
+	target.innerHTML = "Average timer delay was <span class=\"num\">" + results/iterations + 
+		"</span>ms, over <span class=\"num\">" + iterations + "</span> iterations.";
+}
+
+go();
+	</script>
+</body>
+</html>
