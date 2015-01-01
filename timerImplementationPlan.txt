@@ -1,0 +1,6 @@
+Okay this is how im seeing this timer to work:
+    create an array by milliseconds that contains all the subtitle objects
+    create a timer class that calls ticks
+    when array.indexOf(tick) !== -1, change text
+    else, nothing
+    :)
