@@ -16,15 +16,52 @@ function(request, sender, sendResponse) {
           document.body.appendChild(d);
         }
         var elem = document.getElementById("caption");
-        var delay =1000;
-        for (var i = 0; i < request.data.length; i++){
-          (function(s){
-              setTimeout( function(){
-                  elem.innerHTML = s;
-              }, delay);
-          })(data[i].text);
-          delay += 1000;
+        var Timer = function(){        
+          // object properties
+          this.Interval = 1;
+          this.Enable = new Boolean(false);
+          this.Tick;
+          //member vars
+          var timerId = 0;
+          var thisObject;
+          this.Start = function(){
+              this.Enable = new Boolean(true);
+
+              thisObject = this;
+              if (thisObject.Enable){
+                  thisObject.timerId = setInterval(function(){
+                      thisObject.Tick(); 
+                  }, thisObject.Interval);
+              }
+          };
+          this.Stop = function(){            
+              thisObject.Enable = new Boolean(false);
+              clearInterval(thisObject.timerId);
+          };
+        };
+
+        var index = 0;
+        var subCount = 0;
+        var obj = new Timer();
+        obj.Interval = 1;
+        obj.Tick = timer_tick;
+        obj.Start();
+
+        function timer_tick()
+        {
+          if(data[subCount].startTime === index){
+            elem.innerHTML = data[subCount].text + ' ' + index;          
+            subCount++;
+          }
+          else if(data[subCount].endTime === index){
+            elem.innerHTML = ' ' + index;          
+          }
+          index++;
+          if(subCount === (request.data.length -1))
+            obj.Stop();
+          elem.innerHTML = index;
         }
+
         sendResponse();
     }else if(request.message == 'changeLine') {
         if (document.getElementById("caption")){
