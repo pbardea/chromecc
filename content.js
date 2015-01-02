@@ -47,10 +47,12 @@ function(request, sender, sendResponse) {
         obj.Tick = timer_tick;
         obj.Start();
 
-        function timer_tick()
-        {
-          var start = Math.round(data[subCount].startTime/100)*100;
-          var end = Math.round(data[subCount].endTime/100)*100;
+        function timer_tick(){
+          var start = Math.round(data[subCount].startTime/10)*10;
+          var end = Math.round(data[subCount].endTime/10)*10;
+          //both start===index and end===index need to be replaced by some sort of almostEquals(a,b) function
+          //the function takes into account what the closest possible value to start/end should be by taking
+          //the index into account
           if(start === index){
             elem.innerHTML = data[subCount].text + ' ' + index;          
           }
@@ -58,12 +60,11 @@ function(request, sender, sendResponse) {
             elem.innerHTML = ' ' + index;          
             subCount++;
           }
-          index+=10;
+          index+=11;//results in the closest thing we have to a millisecond worth of tolerance
           if(subCount === (request.data.length -1))
             obj.Stop();
         }
-
-        sendResponse();
+;        sendResponse();
     }else if(request.message == 'changeLine') {
         if (document.getElementById("caption")){
            document.getElementById("caption").innerHTML=request.newline;
