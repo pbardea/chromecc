@@ -15,28 +15,29 @@
   
     <script type="text/javascript">
         $(function() {
-          $div = $('#subs');
-          var subs = ['text1', 'text2', 'text3', 'text4', 'text5'];
-          var delay = 1000;
-          //you can pass objects with certain difference of delay similarly.
-          //just populate array with [{text='some string', duration= 999},...]
-          //if no span but just div, just do $selector.html = ...;
-          //just make sure to put scope around setTimeout call when usage like its done here:
-          for(var i=0;i<subs.length;i++) {
-              (function(s){
-                  setTimeout( function(){
-                    $div.text(s);
-                  }, delay);
-              })(subs[i]);
-              delay += 1000;
-          }
+            
+            var a = [0, 1000, 1500, 1800, 2500];
+            var aCount = 0;
+            for(var i = 0; i < 3000; i++){
+              if(almostEquals(a[aCount], i) && aCount<a.length){
+                console.log(i);
+                aCount++;
+              }
+            }
+            function almostEquals(a, b){
+              if(a===b) return true;
+              var quotient = Math.round(a/11);
+              var iterations = b/11;
+              if(iterations === quotient) return true;
+              else return false;
+            }
         });    
     </script>
 </head>
 <body>  
     <div>
        <div id='divOne'>
-            <span id="subs">Welcome to chromecc</span>
+            welcome to chrome cc
        </div>
     </div>
 </body>

@@ -16,9 +16,10 @@ function(request, sender, sendResponse) {
           document.body.appendChild(d);
         }
         var elem = document.getElementById("caption");
+        var CONST_MAGIC_NUMBER = 20;//idk how this works but it does dont question it. still have to calibrate it T__T
         var Timer = function(){        
           // object properties
-          this.Interval = 10;
+          this.Interval = CONST_MAGIC_NUMBER;
           this.Enable = new Boolean(false);
           this.Tick;
           //member vars
@@ -39,11 +40,10 @@ function(request, sender, sendResponse) {
               clearInterval(thisObject.timerId);
           };
         };
-
         var index = 0;
         var subCount = 0;
         var obj = new Timer();
-        obj.Interval = 10;
+        obj.Interval = CONST_MAGIC_NUMBER;
         obj.Tick = timer_tick;
         obj.Start();
 
@@ -53,16 +53,24 @@ function(request, sender, sendResponse) {
           //both start===index and end===index need to be replaced by some sort of almostEquals(a,b) function
           //the function takes into account what the closest possible value to start/end should be by taking
           //the index into account
-          if(start === index){
+          if(almostEquals(start, index)){
             elem.innerHTML = data[subCount].text + ' ' + index;          
           }
-          else if(end === index){
+          else if(almostEquals(end, index)){
             elem.innerHTML = ' ' + index;          
             subCount++;
           }
-          index+=11;//results in the closest thing we have to a millisecond worth of tolerance
+          index+=CONST_MAGIC_NUMBER;//results in the closest thing we have to a millisecond worth of tolerance
           if(subCount === (request.data.length -1))
             obj.Stop();
+        }
+
+        function almostEquals(a, b){
+          if(a===b) return true;
+          var quotient = Math.round(a/CONST_MAGIC_NUMBER);
+          var iterations = b/CONST_MAGIC_NUMBER;
+          if(iterations === quotient) return true;
+          else return false;
         }
 ;        sendResponse();
     }else if(request.message == 'changeLine') {
